@@ -8,6 +8,7 @@
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.13.3",
+    "bootstrap": "^3.3.7",
     "connect-flash": "^0.1.1",
     "connect-mongo": "^2.0.1",
     "cookie-parser": "^1.3.5",
@@ -25,9 +26,12 @@
     "morgan": "^1.6.1",
     "negotiator": "^0.6.1",
     "node": "^10.12.0",
+    "node-sofort": "^0.1.1",
     "nodemon": "^1.18.4",
+    "npm": "^6.4.1",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
-    "serve-favicon": "^2.3.2"
+    "serve-favicon": "^2.3.2",
+    "stripe": "^6.12.1"
   }
 }
