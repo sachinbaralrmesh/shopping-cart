@@ -2,6 +2,10 @@
     <div class="col-sm-6 col-md-4 col-md-offset-4 col-sm-offset-3">
         <h1>Check out</h1>
         <h4>Your Total: ${{ total }}</h4>
+        <div id="charge-error" class="alert alert-danger hidden" {{ä if noErrors}}hidden{{/if}}>
+        {{errMsg}}
+        </div>
+        
         <form action="/" method="post" id="chechout-form">
             <div class="row">
                 <div class="col-xs-12">
@@ -57,3 +61,5 @@
 
     
 </div>
+<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+<script type="text/javascript" src="src/javascripts/checkout.js"></script>

@@ -81,8 +81,9 @@ router.get('/checkout', function(req, res, next){
 if(!req.session.cart){
   return res.redirect('/shopping-cart');
 }
-var cart = new Cart(req.session.cart);
-res.render('shop/checkout', {total:  cart.totalPrice});
+var cart = new Cart(req.session.cart)[0];; 
+var errMsg = req.flash('error')
+res.render('shop/checkout', {total:  cart.totalPrice, errMsg: errMsg, noError: !errMsg});
 });
 //search-result
 
@@ -102,5 +103,35 @@ router.get('/productview/:id',function (req, res, next){
       res.render('shop/product-view', { images: images,products: product });
 
   });
+});
+
+router.post('/checkout', function(req, res, err){
+if(!reqnew.session.cart){
+  return res.render('/shopping-cart');
+}
+var cart= new Cart(req.session.cart);
+
+var stripe = require("stripe")("sk_test_4dS4qP3xqDrbShF9a9x3kOO5");
+
+// Token is created using Checkout or Elements!
+// Get the payment token ID submitted by the form:
+const token = request.body.stripeToken; // Using Express
+
+const charge = stripe.charges.create({
+  amount: cart.totalPrice*100,
+  currency: 'usd',
+  description: 'test charge',
+  source: req.body.stripeToken,
+},function(err, charge){
+  if(err){
+    req.flash('error', err.message);
+    return res.redirect('/chechout')
+  }
+  req.flash('sucess', 'Successfully bought preduct');
+  req.cart = null;
+  res.redirect('/');
+
+
+});
 });
 module.exports = router;
