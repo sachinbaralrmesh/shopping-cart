@@ -2,8 +2,8 @@ Stripe.setPublishableKey('pk_test_8uHD8zz8rcK1p86BAvBeRvjy');
 
 var $form = $('#checkout-form');
 
-$form.submit(function(event){
-    $('#charge-error').removeClass('hidden');
+$form.submit(function(event) {
+    $('#charge-error').addClass('hidden');
     $form.find('button').prop('disabled', true);
     Stripe.card.createToken({
         number: $('#card-number').val(),
@@ -18,24 +18,24 @@ $form.submit(function(event){
 function stripeResponseHandler(status, response) {
 
     if (response.error) { // Problem!
-  
-      // Show the errors on the form
-      $('#charge-error').text(response.error.message);
-      
-      $('#charge-error').removeClass('hidden');
 
-      $('button').prop('disabled', false); // Re-enable submission
-  
+        // Show the errors on the form
+        $('#charge-error').text(response.error.message);
+
+        $('#charge-error').removeClass('hidden');
+
+        $('button').prop('disabled', false); // Re-enable submission
+
     } else { // Token was created!
-  
-      // Get the token ID:
-      var token = response.id;
-  
-      // Insert the token into the form so it gets submitted to the server:
-      $form.append($('<input type="hidden" name="stripeToken" />').val(token));
-  
-      // Submit the form:
-      $form.get(0).submit();
-  
+
+        // Get the token ID:
+        var token = response.id;
+
+        // Insert the token into the form so it gets submitted to the server:
+        $form.append($('<input type="hidden" name="stripeToken" />').val(token));
+
+        // Submit the form:
+        $form.get(0).submit();
+
     }
-  }
+}

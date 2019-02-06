@@ -1,8 +1,11 @@
 var Product = require('../models/product');
 var mongoose = require('mongoose');
-
-mongoose.connect('mongodb://localhost:27017/shopping', {useNewUrlParser: true });
-
+const option = {
+    socketTimeoutMS: 300000,
+    keepAlive: true,
+    reconnectTries: 300000,
+    useNewUrlParser: true
+};
 var products = [
     new Product({
     imagePath:'http://localhost:3000/images/banner1.jpg',
@@ -62,7 +65,10 @@ new Product({
 })
 ];
 var done=0;
-for(var i=0; i< products.length; i++)
+
+mongoose.connect('mongodb://localhost:27017/shopping', option).then(function(){
+    console.log("connection successful");
+    for(var i=0; i< products.length; i++)
 {
     products[i].save(function(err,result)
     {
@@ -73,6 +79,12 @@ for(var i=0; i< products.length; i++)
         }
     });
 }
+}, function(err) {
+    //err handle
+});
+
+
+
 
 function exit()
 {

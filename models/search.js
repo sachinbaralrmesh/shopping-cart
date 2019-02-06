@@ -1,9 +1,9 @@
-module.exports = function Product(productlist){
-    this.products = productlist=="undefined" ?{} : productlist;
+module.exports = function Product(productlist) {
+    this.products = productlist == "undefined" ? {} : productlist;
 
-    this.genrateArray = function() {
+    this.generateArray = function() {
         var arr = [];
-        for (var id in this.products){
+        for (var id in this.products) {
             arr.push(this.products[id]);
         }
         return arr;

@@ -1,10 +1,29 @@
 <div class="row">
-    <div class="col-md-4 col-md-offest-4">
+    <div class="col-md-8 col-md-offset-2">
         <h1>User Profile</h1>
-        <form action="" method="post">
-            <div>
-                
+            <hr>
+            <h2>My Orders</h2>
+            {{#if orders }}
+            {{#each orders }}
+            <div class="panel panel-default">
+                 <div class="panel-body">
+                     <ul class="list-group">
+                         {{#each this.items}}
+                        <li class="list-group-item">
+                            <span class="badge">{{ this.item.price }}</span> 
+                            {{ this.item.title }}  | Quantity: {{ this.qty }}
+                            </li>
+                        {{/each}}
+                        </ul>
+                     </div>
+                <div class="panel-footer">
+                   <strong> Total price: euro {{ this.cart.totalPrice }}</strong>
+                    </div>
             </div>
-        </form>
+            {{/each}}
+            
+            {{else}}
+            <h2>Not Yet Order</h2>
+            {{/if}}
     </div>
 </div>
