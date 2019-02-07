@@ -10,20 +10,20 @@ var Order = require('../models/order');
 router.get('/', function(req, res, next) {
     var successMsg = req.flash('success')[0];
     Product.find(function(err, docs) {
-            var productChunks = [],
-                new_product = [];
-            var treshold = 3;
-            // for (var i=0; i<docs.length; i += treshold){
-            //   productChunks.push(docs.slice(i, i+ treshold));
-            // }
-            for (var i = 0; i < treshold; i++) {
-                productChunks.push(docs.slice(i, i + 3));
-            }
-            docs.forEach(function(element) {
-                new_product.push(element);
-            });
-
+        var productChunks = [],
+            new_product = [];
+        var treshold = 3;
+        // for (var i=0; i<docs.length; i += treshold){
+        //   productChunks.push(docs.slice(i, i+ treshold));
+        // }
+        for (var i = 0; i < treshold; i++) {
+            productChunks.push(docs.slice(i, i + 3));
         }
+        docs.forEach(function(element) {
+            new_product.push(element);
+        });
+
+
         res.render('shop/index', { title: 'Shopping Cart', products: productChunks, new_products: new_product, successMsg: successMsg, noMessages: !successMsg });
 
     });
@@ -33,9 +33,7 @@ router.get('/', function(req, res, next) {
 router.get('/add-to-cart/:id', function(req, res, next) {
 
     var productId = req.params.id;
-    var oldCart = { items: {}, totalQty: 0, totalPrice: 0 };
-    console.log(req.session.cart.items.length);
-    var cart = new Cart(req.session.cart ? req.session.cart : oldCart);
+    var cart = new Cart(req.session.cart ? req.session.cart : { items: {} });
     Product.findById(productId, function(err, product) {
         if (err) {
 
