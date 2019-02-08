@@ -8,9 +8,9 @@
 {{!-- <div class="container-fluid grid-paddingspace" width="100%" height="100%"> --}}
     <div id="mycarousel" class="carousel slide carousel_imgslide" data-ride="carousel">
         <ol class="carousel-indicators">
-            <li data-target="#mycarousel" data-slide-top="0" class="active"></li>
-            <li data-target="#mycarousel" data-slide-top="1"></li>
-            <li data-target="#mycarousel" data-slide-top="2" ></li>
+            <li data-target="#mycarousel" data-slide-top="0" class="active"><a href="#mycarousel"></a></li>
+            <li data-target="#mycarousel" data-slide-top="1"><a href="#mycarousel"></a></li>
+            <li data-target="#mycarousel" data-slide-top="2" ><a href="#mycarousel"></a></li>
         </ol>
         <div class="carousel-inner" width="100%" height="100%">
 
@@ -56,60 +56,100 @@
 {{!-- </div> --}}
 
 <div class="container">
-  <h2>Basic Panel</h2>
+  <h2>Discount Panel</h2>
   <div class="panel panel-default">
-    <div class="panel-body">A Basic Panel</div>
+    <div class="panel-body">
+   <div class="demo carousel slide carousel_imgslide" data-ride="carousel">
+        <p id="paraforimages carousel-inner carousel-items">
+{{#each new_products}}
+
+        {{#each this}}
+           {{#if this.imagePath}}
+        <a href="/productview/{{ this._id }}">
+                    <img class="card" src="{{this.imagePath}}" onclick="/productview/{{ this._id }}"alt="..." height="250px"width="200px">
+      </a>
+      {{/if}}
+        {{/each}}
+{{/each}}
+</p>
+
+<a class="left carousel-control" id="move-left"role="button" width="50px" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left"></span>
+  </a>
+  <a class="right carousel-control" id="move-left" role="button" width="50px" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right"></span>
+  </a>
+</div> 
+
+    </div>
   </div>
 </div>
 
 <style>
 div.demo {
-    background: #ccc none repeat scroll 0 0;
-    border: 3px solid #666;
     margin: 5px;
     padding: 5px;
     position: relative;
     width: 100%;
-    height: 400px;
+    height: 300px;
     overflow: auto;
   }
    p {
     margin: 10px;
     padding: 5px;
-    border: 2px solid #666;
-    width: 300%;
-    height: 400px;
+    width: 500%;
+    height: 250px;
   }
   </style>
   <script>
-$( "div.demo" ).scrollLeft( 300 );
+      $(document).ready(function() {
+
+{{!--if ((screen.width>=1024) && (screen.height>=768)) {
+ alert('Screen size: 1024x768 or larger');
+$("link[rel=stylesheet]:not(:first)").attr({href : "style2.css"});
+}
+else {
+alert('Screen size: less than 1024x768, 800x600 maybe?');
+$("link[rel=stylesheet]:not(:first)").attr({href : "style1.css"});
+} --}}
+});
+$( "move-left" ).scrollLeft( 300 );
 </script>
   
-   <div class="demo">
-        <p>
+
+<div class="container">
+  <h2>Basic Panel</h2>
+  <div class="panel panel-default">
+    <div class="panel-body">
+   <div class="demo carousel slide carousel_imgslide" data-ride="carousel">
+        <p id="paraforimages">
 {{#each new_products}}
 
         {{#each this}}
+        {{#if this.imagePath}}
         <a href="/productview/{{ this._id }}">
-                    <img src="{{this.imagePath}}" onclick="/productview/{{ this._id }}"alt="..." height="300px"width="200px">
+                    <img class="card" src="{{this.imagePath}}" onclick="/productview/{{ this._id }}"alt="..." height="250px"width="200px">
       </a>
+      {{/if}}
         {{/each}}
 {{/each}}
 </p>
-</div> 
 
- 
+    </div>
+  </div>
+</div>
+ {{!-- 
 {{# each products}}
     <div class="row">
         {{# each this}}
-            <div class="col-sm-6 col-md-4">
+            <div class="col-sm-2 col-md-4">
                 <div class="thumbnail">
                     <a href="/productview/{{ this._id }}">
                     <img src="{{this.imagePath}}" onclick="/productview/{{ this._id }}"alt="..." class="img-responsive">
                     </a>
                     <div class="caption">
                         <h3>Thumbnail label</h3>
-                        {{!-- <p class="description">{{this.description}}</p> --}}
+                        <p class="description">{{this.description}}</p> 
                         <div class="clearfix">
                             <div class="price pull-left">{{this.price}}</div>
                             <a href="/add-to-cart/{{ this._id }}" class="btn btn-success pull-right" role="button"><span class="fa fa-cart-plus" style="font: size:40px"></span> ADD to Cart</a>
@@ -118,5 +158,5 @@ $( "div.demo" ).scrollLeft( 300 );
                 </div>
             </div>
         {{/each}}
-</div> 
-{{/each}}
+</div>
+{{/each}} --}}
