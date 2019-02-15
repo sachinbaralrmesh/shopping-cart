@@ -8,6 +8,20 @@
             {{/each}}
         </div>
         {{/if}}
+          {{#if error}}
+        <div class="alert alert-danger">
+            {{# each messages}}
+             <p>{{this}}</p>
+            {{/each}}
+        </div>
+        {{/if}}
+        {{#if success}}
+        <div class="alert alert-success">
+            {{# each messages}}
+             <p>{{this}}</p>
+            {{/each}}
+        </div>
+        {{/if}}
         <form action="/user/signin" method="post">
             <div class="form-group">
                 <label for="email">E-Mail</label>
@@ -19,9 +33,12 @@
                 <input type="password" id="password" name="password" class="form-control" />
 
             </div>
+             <p>  <a href="/user/forgot">Forgot Password ?</a></p>
             <input type="hidden" name="_csrf" value="{{ csrfToken }}">
+            <input type="hidden" name="token" value="{{ token }}">
             <button type="submit" class="btn btn-primary">Sign In</button>
         </form>
+       <br>
         <p> Don't have an account ? <a href="/user/signup"> Sign up instead!</a></p>
 </div>
 </div>

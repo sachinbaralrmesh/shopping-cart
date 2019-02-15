@@ -1,3 +1,115 @@
+<style>
+.demo .{
+    width:100%;
+    height:30%;
+}
+.demo{
+    border: 13px solid #f5f7f6;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+  }
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #5555; 
+}
+  div.scrolla{
+       display: inline-block;
+    vertical-align: middle;
+  }
+  #btnleft #btnright .scroll_p {
+    margin: 10px;
+    padding: 5px;
+    width: 100%;
+    height: 30%;
+  }
+#disbtnright {
+    position: absolute;
+  right: 6px;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  background-color: #555;
+  color: white;
+  font-size: 16px;
+  padding: 12px 24px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  text-align: center;
+  width:30px;
+  height:10%;
+ 
+}
+#disbtnleft {
+  position: absolute;
+  left: 52px;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  background-color: #555;
+  color: white;
+  font-size: 16px;
+  padding: 12px 24px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  text-align: center;
+  width:30px;
+  height:10%;
+ 
+}
+#newbtnleft {
+position: absolute;
+  left:52px;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  background-color: #555;
+  color: white;
+  font-size: 16px;
+  padding: 12px 24px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  text-align: center;
+  width:30px;
+  height:10%;
+ 
+}
+#newbtnright {
+  position: absolute;
+  right: 6px;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  background-color: #555;
+  color: white;
+  font-size: 16px;
+  padding: 12px 24px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  text-align: center;
+  width:30px;
+  height:10%;
+ 
+}
+ .scrollbtn:hover{
+background-color: white;
+}
+  </style>
 <div class="row">
         <div class="col-sm-6 col-md-4 col-md-offset-4 col-col-sm-offset-3">
             <div id="success" class="alert alert-success" {{#if noMessages}}hidden{{/if}}>
@@ -55,89 +167,95 @@
 </div>
 {{!-- </div> --}}
 
-<div class="container">
-  <h2>Discount Panel</h2>
-  <div class="panel panel-default">
-    <div class="panel-body">
-   <div class="demo carousel slide carousel_imgslide" data-ride="carousel">
-        <p id="paraforimages carousel-inner carousel-items">
+  <h2> <strong> Discounts Products </strong></h2>
+  
+   <div class="demo disproduct">
+        <p class="scroll_p dispscroll">
+         <button id="disbtnleft"><span class="fa fa-arrow-left"></span>
+</button>
 {{#each new_products}}
 
         {{#each this}}
            {{#if this.imagePath}}
-        <a href="/productview/{{ this._id }}">
-                    <img class="card" src="{{this.imagePath}}" onclick="/productview/{{ this._id }}"alt="..." height="250px"width="200px">
+        <a class="scrolla disascroll"href="/productview/{{ this._id }}">
+                    <img src="{{this.imagePath}}" onclick="/productview/{{ this._id }}"alt="..." height="20%"width="250px">
       </a>
       {{/if}}
         {{/each}}
 {{/each}}
+ <button id="disbtnright" class="scrollbtn"><span class="fa fa-arrow-right"></span>
+</button>
 </p>
-
-<a class="left carousel-control" id="move-left"role="button" width="50px" data-slide="prev">
-    <span class="glyphicon glyphicon-chevron-left"></span>
-  </a>
-  <a class="right carousel-control" id="move-left" role="button" width="50px" data-slide="next">
-    <span class="glyphicon glyphicon-chevron-right"></span>
-  </a>
 </div> 
 
-    </div>
-  </div>
-</div>
+<br>
 
-<style>
-div.demo {
-    margin: 5px;
-    padding: 5px;
-    position: relative;
-    width: 100%;
-    height: 300px;
-    overflow: auto;
-  }
-   p {
-    margin: 10px;
-    padding: 5px;
-    width: 500%;
-    height: 250px;
-  }
-  </style>
-  <script>
-      $(document).ready(function() {
-
-{{!--if ((screen.width>=1024) && (screen.height>=768)) {
- alert('Screen size: 1024x768 or larger');
-$("link[rel=stylesheet]:not(:first)").attr({href : "style2.css"});
-}
-else {
-alert('Screen size: less than 1024x768, 800x600 maybe?');
-$("link[rel=stylesheet]:not(:first)").attr({href : "style1.css"});
-} --}}
-});
-$( "move-left" ).scrollLeft( 300 );
-</script>
-  
-
-<div class="container">
-  <h2>Basic Panel</h2>
-  <div class="panel panel-default">
-    <div class="panel-body">
-   <div class="demo carousel slide carousel_imgslide" data-ride="carousel">
-        <p id="paraforimages">
+    <h2> <strong> New Products </strong></h2>
+ 
+    <div class="demo newproduct">
+   
+        <p class="scroll_p newpscroll">
+         <button id="newbtnleft"><span class="fa fa-arrow-left"></span>
+</button>
 {{#each new_products}}
 
         {{#each this}}
-        {{#if this.imagePath}}
-        <a href="/productview/{{ this._id }}">
-                    <img class="card" src="{{this.imagePath}}" onclick="/productview/{{ this._id }}"alt="..." height="250px"width="200px">
+           {{#if this.imagePath}}
+        <a class="scrolla newascroll"href="/productview/{{ this._id }}">
+                    <img src="{{this.imagePath}}" onclick="/productview/{{ this._id }}"alt="..." height="20%"width="250px">
       </a>
       {{/if}}
         {{/each}}
 {{/each}}
+<button id="newbtnright" class="scrollbtn"><span class="fa fa-arrow-right"></span>
 </p>
 
-    </div>
-  </div>
-</div>
+</button>
+</a>
+</div> 
+
+<script>
+ $(document).ready(function(){ setInterval(function(){
+    var x = $(".disascroll").offset();
+    $("#disbtnright").animate({top:x.top});
+    $("#disbtnleft").animate({top:x.top});
+
+    x = $(".newascroll").offset();
+     $("#newbtnright").animate({top:x.top});
+    $("#newbtnleft").animate({top:x.top});
+},1000);
+});
+$('#disbtnleft').click(function () {
+    var leftPos = $('div.disproduct').scrollLeft();
+    console.log(leftPos);
+    $("div.disproduct").animate({
+        scrollLeft: leftPos - 500
+    }, 800);
+});
+
+$('#disbtnright').click(function () {
+    var leftPos = $('div.disproduct').scrollLeft();
+    console.log(leftPos);
+    $("div.disproduct").animate({
+        scrollLeft: leftPos + 500
+    }, 800);
+});
+$('#newbtnleft').click(function () {
+    var leftPos = $('div.newproduct').scrollLeft();
+    console.log(leftPos);
+    $("div.newproduct").animate({
+        scrollLeft: leftPos - 500
+    }, 800);
+});
+
+$('#newbtnright').click(function () {
+    var leftPos = $('div.newproduct').scrollLeft();
+    console.log(leftPos);
+    $("div.newproduct").animate({
+        scrollLeft: leftPos + 500
+    }, 800);
+});
+ </script>
  {{!-- 
 {{# each products}}
     <div class="row">

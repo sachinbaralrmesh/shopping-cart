@@ -150,7 +150,7 @@ router.get('/productview/:id', function(req, res, next) {
     var images;
     Images.find({ "productId": productId }, function(err, docs) {
         images = docs;
-    })
+    });
     Product.findById(productId, function(err, product) {
         if (err) {
 

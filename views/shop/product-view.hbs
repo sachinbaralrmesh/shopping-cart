@@ -1,19 +1,161 @@
+       {{!--  <style type="text/css" rel="stylesheet" href="stylesheets/drift-basic.min.css"></style>
+         <style type="text/css" rel="stylesheet" href="stylesheets/magnifier.css"></style> --}}
     <style>
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 50%;
-    height: 50%;
+            img {
+  max-width: 100%; }
+
+.preview {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column; }
+  @media screen and (max-width: 996px) {
+    .preview {
+      margin-bottom: 20px; } }
+
+.preview-pic {
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1; }
+
+.preview-thumbnail.nav-tabs {
+  border: none;
+  margin-top: 15px; }
+  .preview-thumbnail.nav-tabs li {
+    width: 18%;
+    margin-right: 2.5%; }
+    .preview-thumbnail.nav-tabs li img {
+      max-width: 100%;
+      display: block; }
+    .preview-thumbnail.nav-tabs li a {
+      padding: 0;
+      margin: 0; }
+    .preview-thumbnail.nav-tabs li:last-of-type {
+      margin-right: 0; }
+
+.tab-content {
+  overflow: hidden; }
+  .tab-content img {
+    width: 100%;
+    -webkit-animation-name: opacity;
+            animation-name: opacity;
+    -webkit-animation-duration: .3s;
+            animation-duration: .3s; }
+
+.detail{
+  margin: 3%;
+}
+
+@media screen and (min-width: 997px) {
+  .detail{
+  margin: 3%;
+}
+  .wrapper {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex; } }
+
+.details {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column; }
+
+.colors {
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1; }
+
+.product-title, .price, .sizes, .colors {
+  text-transform: UPPERCASE;
+  font-weight: bold; }
+
+.checked, .price span {
+  color: #ff9f1a; }
+
+.product-title, .rating, .product-description, .price, .vote, .sizes {
+  margin-bottom: 15px; }
+
+.product-title {
+  margin-top: 0; }
+
+.size {
+  margin-right: 10px; }
+  .size:first-of-type {
+    margin-left: 40px; }
+
+.color {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 10px;
+  height: 2em;
+  width: 2em;
+  border-radius: 2px; }
+  .color:first-of-type {
+    margin-left: 20px; }
+
+.add-to-cart, .like {
+  background: #ff9f1a;
+  padding: 1.2em 1.5em;
+  border: none;
+  text-transform: UPPERCASE;
+  font-weight: bold;
+  color: #fff;
+  -webkit-transition: background .3s ease;
+          transition: background .3s ease; }
+  .add-to-cart:hover, .like:hover {
+    background: #b36800;
+    color: #fff; }
+
+.not-available {
+  text-align: center;
+  line-height: 2em; }
+  .not-available:before {
+    font-family: fontawesome;
+    content: "\f00d";
+    color: #fff; }
+
+.orange {
+  background: #ff9f1a; }
+
+.green {
+  background: #85ad00; }
+
+.blue {
+  background: #0076ad; }
+
+.tooltip-inner {
+  padding: 1.3em; }
+
+
+  .tiles {
+     margin: 3%;
+    width: 30%;
+    height: 30%;
   }
 
   .tile {
     position: relative;
     float: left;
     width: 33.333%;
-    height: 50%;
+    height: 100%;
     overflow: hidden;
   }
-    .photo {
+
+  .photo {
     position: absolute;
     top: 0;
     left: 0;
@@ -43,39 +185,37 @@
     line-height: 32px;
   }
 
-</style>
 
-        <div class="card">
+        </style>
+<script>
+function currentSlide(id,imagePath){ 
+
+    console.log('current');
+    document.getElementById("pos").src = imagePath;
+{{!--     $(id).animate({ "data-zoom":imagePath});
+      $(id).class("driftImg");
+          var drift=	new Drift(document.querySelector('.driftImg'), {
+			paneContainer: document.querySelector('.detail'),
+			inlinePane: 900,
+			inlineOffsetY: -85,
+			containInline: true,
+			hoverBoundingBox: true
+		});
+    drift.enable(); --}}
+}
+
+	</script>
 			<div class="container-fluid">
                 {{# if products }}
-				<div class="wrapper row">
-					<div class="preview col-md-6">
+		
 						
-						<div class="preview-pic tab-content">
-                            {{#each products}}
-                            {{#if this.imagePath}}
-                            						  <div class="tiles active"  id="{{this._id}}">
-                                            <div id="{{this._id}}"  data-scale="3.6" data-image="{{this.imagePath}}" class="tile" /></div>
-                            {{/if}}
-                            {{/each}}
-                            {{#each images }}
-                            		 <div class="tiles" id="{{this._id}}">
-                                   <div id="{{this._id}}" data-scale="3.6" class="tile" data-image="{{this.imagePath}}"/></div>
-						                {{/each }}
-						</div>
-						<ul class="preview-thumbnail nav nav-tabs">
-                            {{#each images }}
-						  <li><a data-target="#{{this._id}}" data-toggle="tab"><img src="{{this.imagePath}}"/></a></li>
-						{{/each }}
-                        </ul>
 
-					</div>
-        
-        	<div class="details detail col-md-6">
+		       
+        	<div class="col-md-6">
 						<h3 class="product-title">men's shoes fashion</h3>
                         {{#each products}}
                             {{#if this.imagePath}}
-						<p class="product-description">{{this.description}}</p>
+						<p class="product-description magnifier-preview" id="preview">{{this.description}}</p>
 						<h4 class="price">current price: <span>${{this.price}}</span></h4>
 						<div class="action">
             <a href="/add-to-cart/{{ this._id }}" class="btn btn-success pull-right" role="button"><span class="fa fa-cart-plus" style="font: size:40px"></span> ADD to Cart</a>
@@ -84,13 +224,29 @@
                         {{/if}}
                         {{/each}}
 					</div>
-				</div>
+         
+						<div class="tiles">
+                            {{#each products}}
+                            {{#if this.imagePath}}
+                                            <div class="tile" data-scale="3.6" data-image="{{this.imagePath}}" ></div>
+                            {{/if}}
+                            {{/each}}
+                            {{#each images }}
+                                   <div class="tile" data-scale="3.6" data-image="{{this.imagePath}}" > </div>
+						                {{/each }}
+						</div>
+                   
+                  
+			
                 {{/if}}
-			</div>
 		</div>
-    {{!--   <script type="text/javascript" src="../../javascripts/Drift.min.js"></script> --}}
+      {{!--  <script type="text/javascript" src="../../javascripts/Drift.min.js"></script>
+      <script type="text/javascript" src="../../javascripts/maginifier.js"></script>
+      <script type="text/javascript" src="../../javascripts/event.js"></script>  --}}
 				<script>
+          
   $('.tile')
+    // tile mouse actions
     .on('mouseover', function(){
       $(this).children('.photo').css({'transform': 'scale('+ $(this).attr('data-scale') +')'});
     })
@@ -110,4 +266,22 @@
         // set up a background image for each tile based on data-image attribute
         .children('.photo').css({'background-image': 'url('+ $(this).attr('data-image') +')'});
     })
-	</script>
+
+{{!--       var evt = new Event();
+    m = new Magnifier(evt, {
+        largeWrapper: document.getElementById('preview')
+    });     --}}
+{{!-- m.attach({
+    thumb: '.img',
+    largeWrapper: 'preview',
+    zoom:9
+});
+           var drift=	new Drift(document.querySelector('.driftImg'), {
+			paneContainer: document.querySelector('.detail'),
+			inlinePane: 900,
+			inlineOffsetY: -85,
+			containInline: true,
+			hoverBoundingBox: true
+		});
+    drift.enable();  --}}
+	</script> 
