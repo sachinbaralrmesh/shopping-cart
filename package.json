@@ -14,7 +14,7 @@
     "csurf": "^1.9.0",
     "debug": "^4.1.0",
     "event-stream": "=3.3.4",
-    "express": "^4.13.4",
+    "express": "^4.17.3",
     "express-handlebars": "^3.0.0",
     "fresh": "^0.5.2",
     "hbs": "~3.1.0",
